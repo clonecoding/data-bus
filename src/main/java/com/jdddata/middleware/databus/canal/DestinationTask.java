@@ -77,4 +77,5 @@ public class DestinationTask implements Runnable {
     public synchronized void setRunning(boolean running) {
         this.running = running;
     }
+
 }
