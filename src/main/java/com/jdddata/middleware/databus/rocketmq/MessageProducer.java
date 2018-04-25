@@ -7,21 +7,21 @@ import org.springframework.beans.factory.DisposableBean;
 
 public class MessageProducer extends DefaultMQProducer implements DisposableBean {
 
-    /**
-     * logger
-     */
-    private static final Logger log = LoggerFactory.getLogger(MessageProducer.class);
+  /**
+   * logger
+   */
+  private static final Logger log = LoggerFactory.getLogger(MessageProducer.class);
 
-    public MessageProducer(String groupName) {
-        super(groupName);
+  public MessageProducer(String groupName) {
+    super(groupName);
 
-    }
+  }
 
 
-    @Override
-    public void destroy() throws Exception {
+  @Override
+  public void destroy() throws Exception {
 
-    }
+  }
 
 
 }

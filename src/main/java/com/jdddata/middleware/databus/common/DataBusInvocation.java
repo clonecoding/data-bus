@@ -5,18 +5,17 @@ import java.lang.reflect.Method;
 
 public class DataBusInvocation implements InvocationHandler {
 
-    private Object target;
+  private Object target;
 
-    public DataBusInvocation(Object object) {
-        this.target = object;
-    }
+  public DataBusInvocation(Object object) {
+    this.target = object;
+  }
 
-    @Override
-    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+  @Override
+  public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+
+    return method.invoke(target, args);
 
 
-        return method.invoke(target, args);
-
-
-    }
+  }
 }

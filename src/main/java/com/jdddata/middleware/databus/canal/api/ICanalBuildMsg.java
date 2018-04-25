@@ -6,5 +6,5 @@ import com.jdddata.middleware.databus.canal.entity.CanalRocketMsg;
 
 public interface ICanalBuildMsg {
 
-    CanalRocketMsg buildMsg(Message message);
+  CanalRocketMsg buildMsg(Message message);
 }

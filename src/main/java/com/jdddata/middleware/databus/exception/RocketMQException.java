@@ -4,23 +4,25 @@ package com.jdddata.middleware.databus.exception;
  * Created by jiazhen on 2017/10/31.
  */
 public class RocketMQException extends Exception {
-    public RocketMQException() {
-        super();
-    }
 
-    public RocketMQException(String message) {
-        super(message);
-    }
+  public RocketMQException() {
+    super();
+  }
 
-    public RocketMQException(String message, Throwable cause) {
-        super(message, cause);
-    }
+  public RocketMQException(String message) {
+    super(message);
+  }
 
-    public RocketMQException(Throwable cause) {
-        super(cause);
-    }
+  public RocketMQException(String message, Throwable cause) {
+    super(message, cause);
+  }
 
-    protected RocketMQException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
+  public RocketMQException(Throwable cause) {
+    super(cause);
+  }
+
+  protected RocketMQException(String message, Throwable cause, boolean enableSuppression,
+      boolean writableStackTrace) {
+    super(message, cause, enableSuppression, writableStackTrace);
+  }
 }

@@ -5,43 +5,43 @@ import org.apache.rocketmq.common.message.Message;
 
 public class CanalRocketMsg {
 
-    private String topic;
+  private String topic;
 
-    private Message msg;
+  private Message msg;
 
-    private MessageQueueSelector selector;
+  private MessageQueueSelector selector;
 
-    private Object arg;
+  private Object arg;
 
-    public String getTopic() {
-        return topic;
-    }
+  public String getTopic() {
+    return topic;
+  }
 
-    public void setTopic(String topic) {
-        this.topic = topic;
-    }
+  public void setTopic(String topic) {
+    this.topic = topic;
+  }
 
-    public Message getMsg() {
-        return msg;
-    }
+  public Message getMsg() {
+    return msg;
+  }
 
-    public void setMsg(Message msg) {
-        this.msg = msg;
-    }
+  public void setMsg(Message msg) {
+    this.msg = msg;
+  }
 
-    public MessageQueueSelector getSelector() {
-        return selector;
-    }
+  public MessageQueueSelector getSelector() {
+    return selector;
+  }
 
-    public void setSelector(MessageQueueSelector selector) {
-        this.selector = selector;
-    }
+  public void setSelector(MessageQueueSelector selector) {
+    this.selector = selector;
+  }
 
-    public Object getArg() {
-        return arg;
-    }
+  public Object getArg() {
+    return arg;
+  }
 
-    public void setArg(Object arg) {
-        this.arg = arg;
-    }
+  public void setArg(Object arg) {
+    this.arg = arg;
+  }
 }
