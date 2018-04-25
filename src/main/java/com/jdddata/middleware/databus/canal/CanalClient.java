@@ -61,7 +61,7 @@ public enum CanalClient implements Startable {
         canalThreadStatus.put(context.getDestination(), "start");
     }
 
-    public Map getAllDestionStatus(){
+    public Map getAllDestionStatus() {
         Set<String> destnationSet = canalThreadStatus.keySet();
         List<Long> threadLong = Lists.newArrayList();
         for (Map.Entry<String, Long> stringLongEntry : canalThreadManagerCache.entrySet()) {
@@ -71,13 +71,10 @@ public enum CanalClient implements Startable {
         }
 
 
-
-
     }
 
     @Override
     public void stop(String destination) {
-        this.running = false;
         Long threadId = canalThreadManagerCache.get(destination);
         if (threadId != null) {
             ThreadGroup group = Thread.currentThread().getThreadGroup();
