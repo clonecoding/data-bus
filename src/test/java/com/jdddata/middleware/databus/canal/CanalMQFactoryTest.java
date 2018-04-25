@@ -3,6 +3,8 @@ package com.jdddata.middleware.databus.canal;
 import com.jdddata.middleware.databus.canal.api.ICanalMqService;
 import com.jdddata.middleware.databus.canal.context.CanalContext;
 import java.lang.reflect.InvocationTargetException;
+
+import com.jdddata.middleware.databus.canal.factory.CanalMQFactory;
 import org.junit.Test;
 
 public class CanalMQFactoryTest {
