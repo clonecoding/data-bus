@@ -13,9 +13,9 @@ import org.apache.rocketmq.client.producer.SendStatus;
 import org.apache.rocketmq.remoting.exception.RemotingException;
 
 @CanalMQService
-public class CanalMQProducer implements ICanalMqService {
+public class RocketMQServiceProducer implements ICanalMqService {
 
-  private static CanalMQProducer instance;
+  private static RocketMQServiceProducer instance;
   private String groupName;
   private String namesrvAddr;
   private String instanceName;
@@ -24,7 +24,7 @@ public class CanalMQProducer implements ICanalMqService {
 
   private MessageProducer producer;
 
-  public CanalMQProducer(CanalContext context) {
+  public RocketMQServiceProducer(CanalContext context) {
     this.namesrvAddr = context.getRocketmqAddress();
     this.groupName = context.getMqProducerGroup();
     this.instanceName = context.getMqProducerName();
@@ -35,7 +35,7 @@ public class CanalMQProducer implements ICanalMqService {
 
   public synchronized static ICanalMqService instance(CanalContext context) {
     if (null == instance) {
-      instance = new CanalMQProducer(context);
+      instance = new RocketMQServiceProducer(context);
       try {
         instance.init();
       } catch (RocketMQException e) {

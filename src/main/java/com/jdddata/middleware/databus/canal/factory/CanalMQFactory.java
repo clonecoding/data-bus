@@ -4,7 +4,7 @@ import com.jdddata.middleware.databus.canal.Annotation.AnnotationHelper;
 import com.jdddata.middleware.databus.canal.api.ICanalMqService;
 import com.jdddata.middleware.databus.canal.context.CanalContext;
 import com.jdddata.middleware.databus.common.DataBusInvocation;
-import com.jdddata.middleware.databus.rocketmq.CanalMQProducer;
+import com.jdddata.middleware.databus.rocketmq.RocketMQServiceProducer;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Proxy;
@@ -33,7 +33,7 @@ public class CanalMQFactory {
                 return (ICanalMqService) constructor.newInstance(context);
             }
         }
-        return CanalMQProducer.instance(context);
+        return RocketMQServiceProducer.instance(context);
 
     }
 }

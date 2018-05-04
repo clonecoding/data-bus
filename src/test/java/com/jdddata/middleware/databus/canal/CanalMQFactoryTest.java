@@ -13,7 +13,7 @@ public class CanalMQFactoryTest {
   public void test() {
     try {
       CanalContext canalContext = new CanalContext();
-      canalContext.setMqType("CanalMQProducer");
+      canalContext.setMqType("RocketMQServiceProducer");
       ICanalMqService instance = CanalMQFactory.createInstance(canalContext);
 //            Boolean aBoolean = instance.sendOrderly(new Message(8L));
 //            System.out.println(aBoolean);
