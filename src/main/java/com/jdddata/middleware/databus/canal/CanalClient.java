@@ -24,6 +24,7 @@ public enum CanalClient implements Startable {
     private static final HashMap<String, String> statusMap = Maps.newHashMap();
 
 
+
     CanalClient() {
         AnnotationHelper.init();
     }
@@ -61,5 +62,4 @@ public enum CanalClient implements Startable {
         taskReferrer.getTask().setRunning(false);
         STRING_DESTINATION_TASK_MAP.remove(destination);
     }
-
 }

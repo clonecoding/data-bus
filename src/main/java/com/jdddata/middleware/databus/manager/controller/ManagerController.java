@@ -4,14 +4,15 @@ import com.jdddata.middleware.databus.canal.CanalClient;
 import com.jdddata.middleware.databus.canal.context.CanalContext;
 import com.jdddata.middleware.databus.common.PropertiesUtil;
 import com.jdddata.middleware.databus.manager.controller.dto.CanalContextDto;
-import java.io.File;
-import java.io.IOException;
-import java.util.Properties;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Properties;
 
 @Controller
 public class ManagerController {

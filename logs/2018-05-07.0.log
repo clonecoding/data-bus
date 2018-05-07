@@ -1,0 +1,6 @@
+[2018-05-07 17:28:20.882] [main] DEBUG com.alibaba.otter.canal.common.zookeeper.ZooKeeperx[71,ZooKeeperx.java] - Creating new ZookKeeper instance to connect to 10.33.93.101:2181.
+[2018-05-07 17:29:21.864] [main] DEBUG com.alibaba.otter.canal.common.zookeeper.ZooKeeperx[71,ZooKeeperx.java] - Creating new ZookKeeper instance to connect to 10.33.93.101:2181.
+[2018-05-07 17:32:30.051] [main] ERROR com.jdddata.middleware.databus.example.AbstractCanalClientTest[18,ClusterCanalClientTest.java] - start...gezhiwei
+[2018-05-07 17:32:30.148] [main] DEBUG com.alibaba.otter.canal.common.zookeeper.ZooKeeperx[71,ZooKeeperx.java] - Creating new ZookKeeper instance to connect to 10.33.93.101:2181.
+[2018-05-07 17:32:43.388] [main] DEBUG com.jdddata.middleware.databus.example.AbstractCanalClientTest[18,ClusterCanalClientTest.java] - start...gezhiwei
+[2018-05-07 17:32:43.478] [main] DEBUG com.alibaba.otter.canal.common.zookeeper.ZooKeeperx[71,ZooKeeperx.java] - Creating new ZookKeeper instance to connect to 10.33.93.101:2181.
