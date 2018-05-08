@@ -16,7 +16,7 @@ public class ClusterCanalClientTest extends AbstractCanalClientTest {
 
     public static void main(String args[]) {
         logger.info("start...gezhiwei");
-        String destination = "example";
+        String destination = "myself";
 
         // 基于固定canal server的地址，建立链接，其中一台server发生crash，可以支持failover
         // CanalConnector connector = CanalConnectors.newClusterConnector(

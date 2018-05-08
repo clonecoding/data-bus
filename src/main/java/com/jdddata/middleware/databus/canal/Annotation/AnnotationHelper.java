@@ -1,14 +1,14 @@
 package com.jdddata.middleware.databus.canal.Annotation;
 
-import com.jdddata.common.collection.ConcurrentHashSet;
+import java.util.HashSet;
 import java.util.Set;
 import org.reflections.Reflections;
 
 public class AnnotationHelper {
 
-  private static final Set<Class<?>> CANAL_MQ_SERVICE = new ConcurrentHashSet<>();
+  private static final Set<Class<?>> CANAL_MQ_SERVICE = new HashSet<>();
 
-  private static final Set<Class<?>> CANAL_MSG_PROCESS = new ConcurrentHashSet<>();
+  private static final Set<Class<?>> CANAL_MSG_PROCESS = new HashSet<>();
 
 
   public synchronized static void init() {
