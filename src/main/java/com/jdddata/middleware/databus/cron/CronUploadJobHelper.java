@@ -71,9 +71,6 @@ public enum CronUploadJobHelper {
         }
     }
 
-    public static void main(String[] args) {
-        schedule("https://www.baidu.com",5);
-    }
 }
 
 
