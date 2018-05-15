@@ -1,0 +1,20 @@
+[2018-05-15 13:59:00.950] [main] INFO  com.jdddata.middleware.databus.DataBusApplication[50,StartupInfoLogger.java] - Starting DataBusApplication on DESKTOP-TQUEQDC with PID 9880 (E:\Code1\data-bus\target\classes started by gezhiwei in E:\Code1\data-bus)
+[2018-05-15 13:59:00.953] [main] DEBUG com.jdddata.middleware.databus.DataBusApplication[53,StartupInfoLogger.java] - Running with Spring Boot v2.0.1.RELEASE, Spring v5.0.5.RELEASE
+[2018-05-15 13:59:00.956] [main] INFO  com.jdddata.middleware.databus.DataBusApplication[659,SpringApplication.java] - No active profile set, falling back to default profiles: default
+[2018-05-15 13:59:02.559] [main] INFO  com.jdddata.middleware.databus.DataBusApplication[59,StartupInfoLogger.java] - Started DataBusApplication in 1.924 seconds (JVM running for 3.056)
+[2018-05-15 13:59:48.354] [main] INFO  com.jdddata.middleware.databus.DataBusApplication[50,StartupInfoLogger.java] - Starting DataBusApplication on DESKTOP-TQUEQDC with PID 14296 (E:\Code1\data-bus\target\classes started by gezhiwei in E:\Code1\data-bus)
+[2018-05-15 13:59:48.359] [main] DEBUG com.jdddata.middleware.databus.DataBusApplication[53,StartupInfoLogger.java] - Running with Spring Boot v2.0.1.RELEASE, Spring v5.0.5.RELEASE
+[2018-05-15 13:59:48.361] [main] INFO  com.jdddata.middleware.databus.DataBusApplication[659,SpringApplication.java] - No active profile set, falling back to default profiles: default
+[2018-05-15 13:59:49.809] [main] INFO  com.jdddata.middleware.databus.DataBusApplication[59,StartupInfoLogger.java] - Started DataBusApplication in 1.762 seconds (JVM running for 2.699)
+[2018-05-15 14:02:02.249] [main] INFO  com.jdddata.middleware.databus.DataBusApplication[50,StartupInfoLogger.java] - Starting DataBusApplication on DESKTOP-TQUEQDC with PID 13740 (E:\Code1\data-bus\target\classes started by gezhiwei in E:\Code1\data-bus)
+[2018-05-15 14:02:02.251] [main] DEBUG com.jdddata.middleware.databus.DataBusApplication[53,StartupInfoLogger.java] - Running with Spring Boot v2.0.1.RELEASE, Spring v5.0.5.RELEASE
+[2018-05-15 14:02:02.253] [main] INFO  com.jdddata.middleware.databus.DataBusApplication[659,SpringApplication.java] - No active profile set, falling back to default profiles: default
+[2018-05-15 14:02:03.753] [main] INFO  com.jdddata.middleware.databus.DataBusApplication[59,StartupInfoLogger.java] - Started DataBusApplication in 1.778 seconds (JVM running for 2.762)
+[2018-05-15 14:25:59.108] [main] INFO  com.jdddata.middleware.databus.DataBusApplication[50,StartupInfoLogger.java] - Starting DataBusApplication on DESKTOP-TQUEQDC with PID 5100 (E:\Code1\data-bus\target\classes started by gezhiwei in E:\Code1\data-bus)
+[2018-05-15 14:25:59.110] [main] DEBUG com.jdddata.middleware.databus.DataBusApplication[53,StartupInfoLogger.java] - Running with Spring Boot v2.0.1.RELEASE, Spring v5.0.5.RELEASE
+[2018-05-15 14:25:59.111] [main] INFO  com.jdddata.middleware.databus.DataBusApplication[659,SpringApplication.java] - No active profile set, falling back to default profiles: default
+[2018-05-15 14:26:00.542] [main] INFO  com.jdddata.middleware.databus.DataBusApplication[59,StartupInfoLogger.java] - Started DataBusApplication in 1.696 seconds (JVM running for 2.639)
+[2018-05-15 14:26:39.049] [main] INFO  com.jdddata.middleware.databus.DataBusApplication[50,StartupInfoLogger.java] - Starting DataBusApplication on DESKTOP-TQUEQDC with PID 14260 (E:\Code1\data-bus\target\classes started by gezhiwei in E:\Code1\data-bus)
+[2018-05-15 14:26:39.051] [main] DEBUG com.jdddata.middleware.databus.DataBusApplication[53,StartupInfoLogger.java] - Running with Spring Boot v2.0.1.RELEASE, Spring v5.0.5.RELEASE
+[2018-05-15 14:26:39.052] [main] INFO  com.jdddata.middleware.databus.DataBusApplication[659,SpringApplication.java] - No active profile set, falling back to default profiles: default
+[2018-05-15 14:26:40.491] [main] INFO  com.jdddata.middleware.databus.DataBusApplication[59,StartupInfoLogger.java] - Started DataBusApplication in 1.693 seconds (JVM running for 2.622)
