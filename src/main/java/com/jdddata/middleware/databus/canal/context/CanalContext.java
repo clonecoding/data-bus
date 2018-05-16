@@ -1,65 +1,99 @@
 package com.jdddata.middleware.databus.canal.context;
 
+import java.util.Properties;
+
 public class CanalContext {
 
     /**
-     * 解析类的类类型
+     * 别名 和 配置文件同名
      */
-    private String msgHandlerType;
+    private String contextName;
 
     /**
-     * zk地址
-     */
-    private String zkAddress;
-
-    /**
-     * canal的destination
+     * canal 一个概念，表示一个连接
      */
     private String destination;
 
     /**
-     * rocktmq地址
+     * Zookeeper address
      */
-    private String rocketmqAddress;
+    private String parseCanalMessageType;
 
     /**
-     * topic前缀
-     */
-    private String topicPrefix;
-
-    /**
-     * mq类型 这里写class类的小写
+     * MQ的类型，本程序默认rocketmq
      */
     private String mqType;
 
     /**
-     * rocketmq相关
+     * topic 前缀， 可以为空
      */
-    private String mqProducerGroup;
+    private String topicPrefix;
 
     /**
-     * rocketmq相关
+     * zk
      */
-    private String mqProducerName;
+    private String zkAddress;
 
-    private Integer mqProducerMsgMaxSize;
 
-    private Integer mqProducerSendMsgTimeout;
+    /**
+     * * rocketmq config
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     * ****
+     */
 
-    public String getMsgHandlerType() {
-        return msgHandlerType;
+    /**
+     * producer group name
+     */
+    private String rocketMQGroupName;
+
+    /**
+     * name server
+     */
+    private String nameServerAddress;
+
+    /**
+     * rocketmq instance name
+     */
+    private String rocketmqInstanceName;
+
+    /**
+     * 每条信息最大的长度
+     */
+    private String rocketmqPerMessageSize;
+
+    /**
+     * 超时时间
+     */
+    private String rocketmqTimeOut;
+
+    public static CanalContext covert(Properties properties) {
+        CanalContext canalContext = new CanalContext();
+        canalContext.setContextName(properties.getProperty("contextname"));
+        canalContext.setDestination(properties.getProperty("destination"));
+        canalContext.setParseCanalMessageType(properties.getProperty("parseCanalMessageType"));
+        canalContext.setMqType(properties.getProperty("MQType"));
+        canalContext.setZkAddress(properties.getProperty("zookeeper"));
+        canalContext.setTopicPrefix(properties.getProperty("topicPrefix"));
+        canalContext.setRocketMQGroupName(properties.getProperty("rocketmqGroupName"));
+        canalContext.setNameServerAddress(properties.getProperty("rocketmqNameServerAddress"));
+        canalContext.setRocketmqInstanceName(properties.getProperty("rocketmqinstanceName"));
+        canalContext.setRocketmqPerMessageSize(properties.getProperty("rocketmqPerMessageSize"));
+        canalContext.setRocketmqTimeOut(properties.getProperty("rocketmqSendTimeout"));
+        return canalContext;
     }
 
-    public void setMsgHandlerType(String msgHandlerType) {
-        this.msgHandlerType = msgHandlerType;
+    public String getContextName() {
+        return contextName;
     }
 
-    public String getZkAddress() {
-        return zkAddress;
-    }
-
-    public void setZkAddress(String zkAddress) {
-        this.zkAddress = zkAddress;
+    public void setContextName(String contextName) {
+        this.contextName = contextName;
     }
 
     public String getDestination() {
@@ -70,22 +104,13 @@ public class CanalContext {
         this.destination = destination;
     }
 
-    public String getRocketmqAddress() {
-        return rocketmqAddress;
+    public String getParseCanalMessageType() {
+        return parseCanalMessageType;
     }
 
-    public void setRocketmqAddress(String rocketmqAddress) {
-        this.rocketmqAddress = rocketmqAddress;
+    public void setParseCanalMessageType(String parseCanalMessageType) {
+        this.parseCanalMessageType = parseCanalMessageType;
     }
-
-    public String getTopicPrefix() {
-        return topicPrefix;
-    }
-
-    public void setTopicPrefix(String topicPrefix) {
-        this.topicPrefix = topicPrefix;
-    }
-
 
     public String getMqType() {
         return mqType;
@@ -95,51 +120,76 @@ public class CanalContext {
         this.mqType = mqType;
     }
 
-    public String getMqProducerGroup() {
-        return mqProducerGroup;
+    public String getTopicPrefix() {
+        return topicPrefix;
     }
 
-    public void setMqProducerGroup(String mqProducerGroup) {
-        this.mqProducerGroup = mqProducerGroup;
+    public String getZkAddress() {
+        return zkAddress;
     }
 
-    public String getMqProducerName() {
-        return mqProducerName;
+    public void setZkAddress(String zkAddress) {
+        this.zkAddress = zkAddress;
     }
 
-    public void setMqProducerName(String mqProducerName) {
-        this.mqProducerName = mqProducerName;
+    public void setTopicPrefix(String topicPrefix) {
+        this.topicPrefix = topicPrefix;
     }
 
-    public Integer getMqProducerMsgMaxSize() {
-        return mqProducerMsgMaxSize;
+    public String getRocketMQGroupName() {
+        return rocketMQGroupName;
     }
 
-    public void setMqProducerMsgMaxSize(Integer mqProducerMsgMaxSize) {
-        this.mqProducerMsgMaxSize = mqProducerMsgMaxSize;
+    public void setRocketMQGroupName(String rocketMQGroupName) {
+        this.rocketMQGroupName = rocketMQGroupName;
     }
 
-    public Integer getMqProducerSendMsgTimeout() {
-        return mqProducerSendMsgTimeout;
+    public String getNameServerAddress() {
+        return nameServerAddress;
     }
 
-    public void setMqProducerSendMsgTimeout(Integer mqProducerSendMsgTimeout) {
-        this.mqProducerSendMsgTimeout = mqProducerSendMsgTimeout;
+    public void setNameServerAddress(String nameServerAddress) {
+        this.nameServerAddress = nameServerAddress;
+    }
+
+    public String getRocketmqInstanceName() {
+        return rocketmqInstanceName;
+    }
+
+    public void setRocketmqInstanceName(String rocketmqInstanceName) {
+        this.rocketmqInstanceName = rocketmqInstanceName;
+    }
+
+    public String getRocketmqPerMessageSize() {
+        return rocketmqPerMessageSize;
+    }
+
+    public void setRocketmqPerMessageSize(String rocketmqPerMessageSize) {
+        this.rocketmqPerMessageSize = rocketmqPerMessageSize;
+    }
+
+    public String getRocketmqTimeOut() {
+        return rocketmqTimeOut;
+    }
+
+    public void setRocketmqTimeOut(String rocketmqTimeOut) {
+        this.rocketmqTimeOut = rocketmqTimeOut;
     }
 
     @Override
     public String toString() {
         return "CanalContext{" +
-                "msgHandlerType='" + msgHandlerType + '\'' +
-                ", zkAddress='" + zkAddress + '\'' +
+                "contextName='" + contextName + '\'' +
                 ", destination='" + destination + '\'' +
-                ", rocketmqAddress='" + rocketmqAddress + '\'' +
-                ", topicPrefix='" + topicPrefix + '\'' +
+                ", parseCanalMessageType='" + parseCanalMessageType + '\'' +
                 ", mqType='" + mqType + '\'' +
-                ", mqProducerGroup='" + mqProducerGroup + '\'' +
-                ", mqProducerName='" + mqProducerName + '\'' +
-                ", mqProducerMsgMaxSize=" + mqProducerMsgMaxSize +
-                ", mqProducerSendMsgTimeout=" + mqProducerSendMsgTimeout +
+                ", topicPrefix='" + topicPrefix + '\'' +
+                ", rocketMQGroupName='" + rocketMQGroupName + '\'' +
+                ", nameServerAddress='" + nameServerAddress + '\'' +
+                ", rocketmqInstanceName='" + rocketmqInstanceName + '\'' +
+                ", rocketmqPerMessageSize='" + rocketmqPerMessageSize + '\'' +
+                ", rocketmqTimeOut='" + rocketmqTimeOut + '\'' +
                 '}';
     }
 }
+

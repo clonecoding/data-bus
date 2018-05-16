@@ -1,7 +1,6 @@
 package com.jdddata.middleware.databus.canal;
 
 import com.google.common.collect.Maps;
-import com.jdddata.middleware.databus.canal.Annotation.AnnotationHelper;
 import com.jdddata.middleware.databus.canal.api.Startable;
 import com.jdddata.middleware.databus.canal.context.CanalContext;
 import org.slf4j.Logger;
@@ -24,9 +23,8 @@ public enum CanalClient implements Startable {
     private static final HashMap<String, String> statusMap = Maps.newHashMap();
 
 
-
     CanalClient() {
-        AnnotationHelper.init();
+
     }
 
     @Override
@@ -58,8 +56,21 @@ public enum CanalClient implements Startable {
 
     @Override
     public void stop(String destination) {
-        TaskReferrer taskReferrer = STRING_DESTINATION_TASK_MAP.get(destination);
-        taskReferrer.getTask().setRunning(false);
-        STRING_DESTINATION_TASK_MAP.remove(destination);
+
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            public void run() {
+                TaskReferrer taskReferrer = STRING_DESTINATION_TASK_MAP.get(destination);
+                if (!taskReferrer.getTask().isRunning()) {
+                    return;
+                }
+                taskReferrer.getTask().setRunning(false);
+                try {
+                    taskReferrer.getThread().join();
+                } catch (InterruptedException e) {
+                    //ignore
+                }
+                STRING_DESTINATION_TASK_MAP.remove(destination);
+            }
+        });
     }
 }

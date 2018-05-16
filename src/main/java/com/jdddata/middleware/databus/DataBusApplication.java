@@ -1,5 +1,6 @@
 package com.jdddata.middleware.databus;
 
+import com.jdddata.middleware.databus.canal.Annotation.AnnotationHelper;
 import com.jdddata.middleware.databus.cron.CronUploadJobHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.SpringApplication;
@@ -18,7 +19,7 @@ public class DataBusApplication {
     private static final String UPLOAD_DELAY = "upload.delay";
 
     public static void main(String[] args) {
-
+        AnnotationHelper.init();
         boolean initFileExist = false;
         String path = ClassUtils.getDefaultClassLoader().getResource("config").getPath();
         File f = new File(path);

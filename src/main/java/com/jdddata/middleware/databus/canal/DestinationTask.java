@@ -10,12 +10,15 @@ import com.jdddata.middleware.databus.canal.entity.CanalRocketMsg;
 import com.jdddata.middleware.databus.canal.factory.CanalMQFactory;
 import com.jdddata.middleware.databus.canal.factory.CanalMsgBuildFactory;
 import com.jdddata.middleware.databus.common.DataBusConstants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.InvocationTargetException;
 
 public class DestinationTask implements Runnable {
 
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(DestinationTask.class);
     private CanalContext context;
 
     private boolean running;
@@ -31,19 +34,20 @@ public class DestinationTask implements Runnable {
         try {
             process(context);
         } catch (NoSuchMethodException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         } catch (InstantiationException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         } catch (IllegalAccessException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         } catch (InvocationTargetException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         }
     }
 
     private void process(CanalContext context)
             throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
 
+        LOGGER.info("{} is start",context.getContextName());
         //canal init
         CanalConnector connector = CanalConnectors
                 .newClusterConnector(context.getZkAddress(), context.getDestination(), "", "");
