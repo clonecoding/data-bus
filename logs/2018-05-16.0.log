@@ -820,3 +820,83 @@ java.net.ConnectException: Connection timed out: no further information
 [2018-05-16 17:13:19.945] [Thread-18-SendThread(10.33.93.101:2181)] INFO  org.apache.zookeeper.ClientCnxn[877,ClientCnxn.java] - Socket connection established to 10.33.93.101/10.33.93.101:2181, initiating session
 [2018-05-16 17:13:19.947] [Thread-18-SendThread(10.33.93.101:2181)] INFO  org.apache.zookeeper.ClientCnxn[1302,ClientCnxn.java] - Session establishment complete on server 10.33.93.101/10.33.93.101:2181, sessionid = 0x10000004f720011, negotiated timeout = 40000
 [2018-05-16 17:13:19.947] [Thread-18-EventThread] INFO  org.I0Itec.zkclient.ZkClient[713,ZkClient.java] - zookeeper state changed (SyncConnected)
+[2018-05-16 17:14:27.742] [Thread-18-SendThread(10.33.93.101:2181)] WARN  org.apache.zookeeper.ClientCnxn[1111,ClientCnxn.java] - Client session timed out, have not heard from server in 67785ms for sessionid 0x10000004f720011
+[2018-05-16 17:14:27.742] [http-nio-8084-exec-1-SendThread(10.33.93.101:2181)] WARN  org.apache.zookeeper.ClientCnxn[1111,ClientCnxn.java] - Client session timed out, have not heard from server in 67819ms for sessionid 0x10000004f720010
+[2018-05-16 17:14:33.622] [http-nio-8084-exec-1-SendThread(10.33.93.101:2181)] INFO  org.apache.zookeeper.ClientCnxn[1159,ClientCnxn.java] - Client session timed out, have not heard from server in 67819ms for sessionid 0x10000004f720010, closing socket connection and attempting reconnect
+[2018-05-16 17:14:33.622] [Thread-18-SendThread(10.33.93.101:2181)] INFO  org.apache.zookeeper.ClientCnxn[1159,ClientCnxn.java] - Client session timed out, have not heard from server in 67785ms for sessionid 0x10000004f720011, closing socket connection and attempting reconnect
+[2018-05-16 17:14:35.083] [Thread-18-EventThread] INFO  org.I0Itec.zkclient.ZkClient[713,ZkClient.java] - zookeeper state changed (Disconnected)
+[2018-05-16 17:14:35.083] [http-nio-8084-exec-1-EventThread] INFO  org.I0Itec.zkclient.ZkClient[713,ZkClient.java] - zookeeper state changed (Disconnected)
+[2018-05-16 17:14:36.945] [http-nio-8084-exec-1-SendThread(10.33.93.101:2181)] INFO  org.apache.zookeeper.ClientCnxn[1035,ClientCnxn.java] - Opening socket connection to server 10.33.93.101/10.33.93.101:2181. Will not attempt to authenticate using SASL (unknown error)
+[2018-05-16 17:14:36.945] [Thread-18-SendThread(10.33.93.101:2181)] INFO  org.apache.zookeeper.ClientCnxn[1035,ClientCnxn.java] - Opening socket connection to server 10.33.93.101/10.33.93.101:2181. Will not attempt to authenticate using SASL (unknown error)
+[2018-05-16 17:14:38.545] [http-nio-8084-exec-1-SendThread(10.33.93.101:2181)] INFO  org.apache.zookeeper.ClientCnxn[877,ClientCnxn.java] - Socket connection established to 10.33.93.101/10.33.93.101:2181, initiating session
+[2018-05-16 17:14:38.545] [Thread-18-SendThread(10.33.93.101:2181)] INFO  org.apache.zookeeper.ClientCnxn[877,ClientCnxn.java] - Socket connection established to 10.33.93.101/10.33.93.101:2181, initiating session
+[2018-05-16 17:14:38.557] [http-nio-8084-exec-1-SendThread(10.33.93.101:2181)] WARN  org.apache.zookeeper.ClientCnxn[1288,ClientCnxn.java] - Unable to reconnect to ZooKeeper service, session 0x10000004f720010 has expired
+[2018-05-16 17:14:38.557] [http-nio-8084-exec-1-EventThread] INFO  org.I0Itec.zkclient.ZkClient[713,ZkClient.java] - zookeeper state changed (Expired)
+[2018-05-16 17:14:38.557] [http-nio-8084-exec-1-SendThread(10.33.93.101:2181)] INFO  org.apache.zookeeper.ClientCnxn[1157,ClientCnxn.java] - Unable to reconnect to ZooKeeper service, session 0x10000004f720010 has expired, closing socket connection
+[2018-05-16 17:14:38.557] [http-nio-8084-exec-1-EventThread] INFO  org.apache.zookeeper.ZooKeeper[441,ZooKeeper.java] - Initiating client connection, connectString=10.33.93.101:2181 sessionTimeout=30000 watcher=org.I0Itec.zkclient.ZkClient@2c8f6307
+[2018-05-16 17:14:38.559] [Thread-18-SendThread(10.33.93.101:2181)] WARN  org.apache.zookeeper.ClientCnxn[1288,ClientCnxn.java] - Unable to reconnect to ZooKeeper service, session 0x10000004f720011 has expired
+[2018-05-16 17:14:38.560] [Thread-18-SendThread(10.33.93.101:2181)] INFO  org.apache.zookeeper.ClientCnxn[1157,ClientCnxn.java] - Unable to reconnect to ZooKeeper service, session 0x10000004f720011 has expired, closing socket connection
+[2018-05-16 17:14:38.560] [Thread-18-EventThread] INFO  org.I0Itec.zkclient.ZkClient[713,ZkClient.java] - zookeeper state changed (Expired)
+[2018-05-16 17:14:38.561] [Thread-18-EventThread] INFO  org.apache.zookeeper.ZooKeeper[441,ZooKeeper.java] - Initiating client connection, connectString=10.33.93.101:2181 sessionTimeout=90000 watcher=com.alibaba.otter.canal.common.zookeeper.ZkClientx@4120c16b
+[2018-05-16 17:14:38.566] [http-nio-8084-exec-1-EventThread] INFO  org.apache.zookeeper.ClientCnxn[520,ClientCnxn.java] - EventThread shut down for session: 0x10000004f720010
+[2018-05-16 17:14:38.568] [http-nio-8084-exec-1-SendThread(10.33.93.101:2181)] INFO  org.apache.zookeeper.ClientCnxn[1035,ClientCnxn.java] - Opening socket connection to server 10.33.93.101/10.33.93.101:2181. Will not attempt to authenticate using SASL (unknown error)
+[2018-05-16 17:14:38.569] [Thread-18-SendThread(10.33.93.101:2181)] INFO  org.apache.zookeeper.ClientCnxn[1035,ClientCnxn.java] - Opening socket connection to server 10.33.93.101/10.33.93.101:2181. Will not attempt to authenticate using SASL (unknown error)
+[2018-05-16 17:14:38.571] [http-nio-8084-exec-1-SendThread(10.33.93.101:2181)] INFO  org.apache.zookeeper.ClientCnxn[877,ClientCnxn.java] - Socket connection established to 10.33.93.101/10.33.93.101:2181, initiating session
+[2018-05-16 17:14:38.571] [Thread-18-SendThread(10.33.93.101:2181)] INFO  org.apache.zookeeper.ClientCnxn[877,ClientCnxn.java] - Socket connection established to 10.33.93.101/10.33.93.101:2181, initiating session
+[2018-05-16 17:14:38.572] [Thread-18-EventThread] INFO  org.apache.zookeeper.ClientCnxn[520,ClientCnxn.java] - EventThread shut down for session: 0x10000004f720011
+[2018-05-16 17:14:38.577] [http-nio-8084-exec-1-SendThread(10.33.93.101:2181)] INFO  org.apache.zookeeper.ClientCnxn[1302,ClientCnxn.java] - Session establishment complete on server 10.33.93.101/10.33.93.101:2181, sessionid = 0x10000004f720012, negotiated timeout = 30000
+[2018-05-16 17:14:38.577] [http-nio-8084-exec-1-EventThread] INFO  org.I0Itec.zkclient.ZkClient[713,ZkClient.java] - zookeeper state changed (SyncConnected)
+[2018-05-16 17:14:38.579] [Thread-18-SendThread(10.33.93.101:2181)] INFO  org.apache.zookeeper.ClientCnxn[1302,ClientCnxn.java] - Session establishment complete on server 10.33.93.101/10.33.93.101:2181, sessionid = 0x10000004f720013, negotiated timeout = 40000
+[2018-05-16 17:14:38.579] [Thread-18-EventThread] INFO  org.I0Itec.zkclient.ZkClient[713,ZkClient.java] - zookeeper state changed (SyncConnected)
+[2018-05-16 17:14:38.775] [Thread-18] DEBUG io.netty.util.internal.logging.InternalLoggerFactory[71,Slf4JLogger.java] - Using SLF4J as the default logging framework
+[2018-05-16 17:14:38.797] [Thread-18] DEBUG io.netty.channel.MultithreadEventLoopGroup[76,Slf4JLogger.java] - -Dio.netty.eventLoopThreads: 16
+[2018-05-16 17:14:38.859] [Thread-18] DEBUG io.netty.channel.nio.NioEventLoop[76,Slf4JLogger.java] - -Dio.netty.noKeySetOptimization: false
+[2018-05-16 17:14:38.860] [Thread-18] DEBUG io.netty.channel.nio.NioEventLoop[76,Slf4JLogger.java] - -Dio.netty.selectorAutoRebuildThreshold: 512
+[2018-05-16 17:14:38.864] [Thread-18] DEBUG io.netty.util.internal.PlatformDependent[71,Slf4JLogger.java] - Platform: Windows
+[2018-05-16 17:14:38.866] [Thread-18] DEBUG io.netty.util.internal.PlatformDependent0[76,Slf4JLogger.java] - -Dio.netty.noUnsafe: false
+[2018-05-16 17:14:38.867] [Thread-18] DEBUG io.netty.util.internal.PlatformDependent0[76,Slf4JLogger.java] - Java version: 8
+[2018-05-16 17:14:38.869] [Thread-18] DEBUG io.netty.util.internal.PlatformDependent0[71,Slf4JLogger.java] - sun.misc.Unsafe.theUnsafe: available
+[2018-05-16 17:14:38.871] [Thread-18] DEBUG io.netty.util.internal.PlatformDependent0[71,Slf4JLogger.java] - sun.misc.Unsafe.copyMemory: available
+[2018-05-16 17:14:38.873] [Thread-18] DEBUG io.netty.util.internal.PlatformDependent0[71,Slf4JLogger.java] - java.nio.Buffer.address: available
+[2018-05-16 17:14:38.874] [Thread-18] DEBUG io.netty.util.internal.PlatformDependent0[71,Slf4JLogger.java] - direct buffer constructor: available
+[2018-05-16 17:14:38.875] [Thread-18] DEBUG io.netty.util.internal.PlatformDependent0[76,Slf4JLogger.java] - java.nio.Bits.unaligned: available, true
+[2018-05-16 17:14:38.876] [Thread-18] DEBUG io.netty.util.internal.PlatformDependent0[71,Slf4JLogger.java] - jdk.internal.misc.Unsafe.allocateUninitializedArray(int): unavailable prior to Java9
+[2018-05-16 17:14:38.876] [Thread-18] DEBUG io.netty.util.internal.PlatformDependent0[76,Slf4JLogger.java] - java.nio.DirectByteBuffer.<init>(long, int): available
+[2018-05-16 17:14:38.876] [Thread-18] DEBUG io.netty.util.internal.PlatformDependent[76,Slf4JLogger.java] - sun.misc.Unsafe: available
+[2018-05-16 17:14:38.876] [Thread-18] DEBUG io.netty.util.internal.PlatformDependent[76,Slf4JLogger.java] - -Dio.netty.tmpdir: C:\Users\gezhiwei\AppData\Local\Temp (java.io.tmpdir)
+[2018-05-16 17:14:38.877] [Thread-18] DEBUG io.netty.util.internal.PlatformDependent[76,Slf4JLogger.java] - -Dio.netty.bitMode: 64 (sun.arch.data.model)
+[2018-05-16 17:14:38.882] [Thread-18] DEBUG io.netty.util.internal.PlatformDependent[76,Slf4JLogger.java] - -Dio.netty.noPreferDirect: false
+[2018-05-16 17:14:38.882] [Thread-18] DEBUG io.netty.util.internal.PlatformDependent[76,Slf4JLogger.java] - -Dio.netty.maxDirectMemory: 3791650816 bytes
+[2018-05-16 17:14:38.882] [Thread-18] DEBUG io.netty.util.internal.PlatformDependent[76,Slf4JLogger.java] - -Dio.netty.uninitializedArrayAllocationThreshold: -1
+[2018-05-16 17:14:38.883] [Thread-18] DEBUG io.netty.util.internal.CleanerJava6[71,Slf4JLogger.java] - java.nio.ByteBuffer.cleaner(): available
+[2018-05-16 17:14:38.887] [Thread-18] DEBUG io.netty.util.internal.PlatformDependent[71,Slf4JLogger.java] - org.jctools-core.MpscChunkedArrayQueue: available
+[2018-05-16 17:14:40.479] [MQClientFactoryScheduledThread] DEBUG io.netty.channel.DefaultChannelId[76,Slf4JLogger.java] - -Dio.netty.processId: 19056 (auto-detected)
+[2018-05-16 17:14:40.484] [MQClientFactoryScheduledThread] DEBUG io.netty.util.NetUtil[76,Slf4JLogger.java] - -Djava.net.preferIPv4Stack: false
+[2018-05-16 17:14:40.484] [MQClientFactoryScheduledThread] DEBUG io.netty.util.NetUtil[76,Slf4JLogger.java] - -Djava.net.preferIPv6Addresses: false
+[2018-05-16 17:14:40.522] [MQClientFactoryScheduledThread] DEBUG io.netty.util.NetUtil[86,Slf4JLogger.java] - Loopback interface: lo (Software Loopback Interface 1, 127.0.0.1)
+[2018-05-16 17:14:40.523] [MQClientFactoryScheduledThread] DEBUG io.netty.util.NetUtil[81,Slf4JLogger.java] - Failed to get SOMAXCONN from sysctl and file \proc\sys\net\core\somaxconn. Default: 200
+[2018-05-16 17:14:40.557] [MQClientFactoryScheduledThread] DEBUG io.netty.channel.DefaultChannelId[76,Slf4JLogger.java] - -Dio.netty.machineId: 00:00:00:00:00:00:00:e0 (auto-detected)
+[2018-05-16 17:14:40.562] [MQClientFactoryScheduledThread] DEBUG io.netty.util.internal.InternalThreadLocalMap[76,Slf4JLogger.java] - -Dio.netty.threadLocalMap.stringBuilder.initialSize: 1024
+[2018-05-16 17:14:40.562] [MQClientFactoryScheduledThread] DEBUG io.netty.util.internal.InternalThreadLocalMap[76,Slf4JLogger.java] - -Dio.netty.threadLocalMap.stringBuilder.maxSize: 4096
+[2018-05-16 17:14:40.569] [MQClientFactoryScheduledThread] DEBUG io.netty.util.ResourceLeakDetector[81,Slf4JLogger.java] - -Dio.netty.leakDetection.level: simple
+[2018-05-16 17:14:40.569] [MQClientFactoryScheduledThread] DEBUG io.netty.util.ResourceLeakDetector[81,Slf4JLogger.java] - -Dio.netty.leakDetection.targetRecords: 4
+[2018-05-16 17:14:40.584] [MQClientFactoryScheduledThread] DEBUG io.netty.buffer.PooledByteBufAllocator[76,Slf4JLogger.java] - -Dio.netty.allocator.numHeapArenas: 16
+[2018-05-16 17:14:40.584] [MQClientFactoryScheduledThread] DEBUG io.netty.buffer.PooledByteBufAllocator[76,Slf4JLogger.java] - -Dio.netty.allocator.numDirectArenas: 16
+[2018-05-16 17:14:40.584] [MQClientFactoryScheduledThread] DEBUG io.netty.buffer.PooledByteBufAllocator[76,Slf4JLogger.java] - -Dio.netty.allocator.pageSize: 8192
+[2018-05-16 17:14:40.584] [MQClientFactoryScheduledThread] DEBUG io.netty.buffer.PooledByteBufAllocator[76,Slf4JLogger.java] - -Dio.netty.allocator.maxOrder: 11
+[2018-05-16 17:14:40.584] [MQClientFactoryScheduledThread] DEBUG io.netty.buffer.PooledByteBufAllocator[76,Slf4JLogger.java] - -Dio.netty.allocator.chunkSize: 16777216
+[2018-05-16 17:14:40.584] [MQClientFactoryScheduledThread] DEBUG io.netty.buffer.PooledByteBufAllocator[76,Slf4JLogger.java] - -Dio.netty.allocator.tinyCacheSize: 512
+[2018-05-16 17:14:40.584] [MQClientFactoryScheduledThread] DEBUG io.netty.buffer.PooledByteBufAllocator[76,Slf4JLogger.java] - -Dio.netty.allocator.smallCacheSize: 256
+[2018-05-16 17:14:40.584] [MQClientFactoryScheduledThread] DEBUG io.netty.buffer.PooledByteBufAllocator[76,Slf4JLogger.java] - -Dio.netty.allocator.normalCacheSize: 64
+[2018-05-16 17:14:40.584] [MQClientFactoryScheduledThread] DEBUG io.netty.buffer.PooledByteBufAllocator[76,Slf4JLogger.java] - -Dio.netty.allocator.maxCachedBufferCapacity: 32768
+[2018-05-16 17:14:40.584] [MQClientFactoryScheduledThread] DEBUG io.netty.buffer.PooledByteBufAllocator[76,Slf4JLogger.java] - -Dio.netty.allocator.cacheTrimInterval: 8192
+[2018-05-16 17:14:40.585] [MQClientFactoryScheduledThread] DEBUG io.netty.buffer.PooledByteBufAllocator[76,Slf4JLogger.java] - -Dio.netty.allocator.useCacheForAllThreads: true
+[2018-05-16 17:14:40.591] [MQClientFactoryScheduledThread] DEBUG io.netty.buffer.ByteBufUtil[76,Slf4JLogger.java] - -Dio.netty.allocator.type: pooled
+[2018-05-16 17:14:40.591] [MQClientFactoryScheduledThread] DEBUG io.netty.buffer.ByteBufUtil[76,Slf4JLogger.java] - -Dio.netty.threadLocalDirectBufferSize: 0
+[2018-05-16 17:14:40.591] [MQClientFactoryScheduledThread] DEBUG io.netty.buffer.ByteBufUtil[76,Slf4JLogger.java] - -Dio.netty.maxThreadLocalCharBufferSize: 16384
+[2018-05-16 17:14:40.615] [MQClientFactoryScheduledThread] DEBUG io.netty.util.Recycler[76,Slf4JLogger.java] - -Dio.netty.recycler.maxCapacityPerThread: 4096
+[2018-05-16 17:14:40.615] [MQClientFactoryScheduledThread] DEBUG io.netty.util.Recycler[76,Slf4JLogger.java] - -Dio.netty.recycler.maxSharedCapacityFactor: 2
+[2018-05-16 17:14:40.615] [MQClientFactoryScheduledThread] DEBUG io.netty.util.Recycler[76,Slf4JLogger.java] - -Dio.netty.recycler.linkCapacity: 16
+[2018-05-16 17:14:40.615] [MQClientFactoryScheduledThread] DEBUG io.netty.util.Recycler[76,Slf4JLogger.java] - -Dio.netty.recycler.ratio: 8
+[2018-05-16 17:14:40.624] [NettyClientWorkerThread_1] DEBUG io.netty.buffer.AbstractByteBuf[81,Slf4JLogger.java] - -Dio.netty.buffer.bytebuf.checkAccessible: true
+[2018-05-16 17:14:40.625] [NettyClientWorkerThread_1] DEBUG io.netty.util.ResourceLeakDetectorFactory[76,Slf4JLogger.java] - Loaded default ResourceLeakDetector: io.netty.util.ResourceLeakDetector@1799d907

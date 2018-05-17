@@ -48,7 +48,7 @@ public class ManagerController {
                 checkOutBeforStarting(contextName, properties);
 
                 CanalClient.INSTANCE.start(CanalContext.covert(properties));
-                properties.replace("status", "running");
+                properties.replace("status", CanalStatus.RUNNING.getValue());
                 FileOutputStream fileOutputStream = new FileOutputStream(file);
                 properties.store(fileOutputStream, null);
                 fileOutputStream.close();
@@ -67,6 +67,23 @@ public class ManagerController {
             return new ResponseEntity<>(map, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
+
+    }
+
+    @RequestMapping(value = "canal/stop/{contextName}", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<Map<String, Object>> stopCanal(@PathVariable("contextName") String contextName) {
+        String fileName = contextName + ".properties";
+        File configs = new File(ClassUtils.getDefaultClassLoader().getResource("config").getPath());
+        final ConcurrentHashMap<String, File> fileName_File_map = new ConcurrentHashMap<>();
+        for (File file : configs.listFiles()) {
+            fileName_File_map.put(file.getName(), file);
+        }
+
+        CanalClient.INSTANCE.stop(contextName);
+        Map<String, Object> map = new HashMap<>();
+        map.put("errMsg", "");
+        return new ResponseEntity<>(map, HttpStatus.OK);
 
     }
 
