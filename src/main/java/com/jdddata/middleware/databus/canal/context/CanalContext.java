@@ -72,6 +72,8 @@ public class CanalContext {
      */
     private String rocketmqTimeOut;
 
+    private String status;
+
     public static CanalContext covert(Properties properties) {
         CanalContext canalContext = new CanalContext();
         canalContext.setContextName(properties.getProperty("contextname"));
@@ -85,6 +87,7 @@ public class CanalContext {
         canalContext.setRocketmqInstanceName(properties.getProperty("rocketmqinstanceName"));
         canalContext.setRocketmqPerMessageSize(properties.getProperty("rocketmqPerMessageSize"));
         canalContext.setRocketmqTimeOut(properties.getProperty("rocketmqSendTimeout"));
+        canalContext.setStatus(properties.getProperty("status"));
         return canalContext;
     }
 
@@ -176,6 +179,14 @@ public class CanalContext {
         this.rocketmqTimeOut = rocketmqTimeOut;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "CanalContext{" +
@@ -184,11 +195,13 @@ public class CanalContext {
                 ", parseCanalMessageType='" + parseCanalMessageType + '\'' +
                 ", mqType='" + mqType + '\'' +
                 ", topicPrefix='" + topicPrefix + '\'' +
+                ", zkAddress='" + zkAddress + '\'' +
                 ", rocketMQGroupName='" + rocketMQGroupName + '\'' +
                 ", nameServerAddress='" + nameServerAddress + '\'' +
                 ", rocketmqInstanceName='" + rocketmqInstanceName + '\'' +
                 ", rocketmqPerMessageSize='" + rocketmqPerMessageSize + '\'' +
                 ", rocketmqTimeOut='" + rocketmqTimeOut + '\'' +
+                ", status='" + status + '\'' +
                 '}';
     }
 }
