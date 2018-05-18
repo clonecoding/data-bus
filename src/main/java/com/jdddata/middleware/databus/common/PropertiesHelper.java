@@ -58,6 +58,29 @@ public class PropertiesHelper {
         }
     }
 
+    public static void updateStatus(String value) {
+        lock.writeLock().lock();
+        try {
+            Properties properties = read();
+            if (null == properties) {
+                throw new FileNotFoundException("application file is not exist");
+            }
+            properties.replace("status", value);
+            FileOutputStream fileOutputStream = new FileOutputStream(f);
+            properties.store(fileOutputStream, null);
+
+            fileOutputStream.close();
+        } catch (FileNotFoundException e) {
+            LOGGER.error(e.getMessage());
+            lock.writeLock().unlock();
+        } catch (IOException e) {
+            LOGGER.error(e.getMessage());
+            lock.writeLock().unlock();
+        } finally {
+            lock.writeLock().unlock();
+        }
+    }
+
     public static Properties read() {
         lock.readLock().lock();
         try {

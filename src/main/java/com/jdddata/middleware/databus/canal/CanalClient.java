@@ -3,6 +3,7 @@ package com.jdddata.middleware.databus.canal;
 import com.google.common.collect.Maps;
 import com.jdddata.middleware.databus.canal.api.Startable;
 import com.jdddata.middleware.databus.canal.context.CanalContext;
+import com.jdddata.middleware.databus.common.CanalStatus;
 import com.jdddata.middleware.databus.common.PropertiesHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -66,8 +67,8 @@ public enum CanalClient implements Startable {
                 }
                 taskReferrer.getTask().setRunning(false);
                 try {
+                    PropertiesHelper.updateStatus(CanalStatus.STOPPING.getValue());
                     taskReferrer.getThread().join();
-                    PropertiesHelper.modify("status", "stopping");
                 } catch (InterruptedException e) {
                     //ignore
                 }
