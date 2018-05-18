@@ -200,6 +200,7 @@ public class ManagerController {
             if (!zkClient.exists("/otter/canal/destinations/" + destination)) {
                 throw new ValidatorException("destain " + destination + "of the canal server is not running please start it");
             }
+            zkClient.close();
 
         } catch (ZkTimeoutException timeoutException) {
             throw new ValidatorException(destination + ": " + timeoutException.getMessage());
