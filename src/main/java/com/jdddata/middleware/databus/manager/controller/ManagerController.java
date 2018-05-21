@@ -1,9 +1,8 @@
 package com.jdddata.middleware.databus.manager.controller;
 
 import com.jdddata.middleware.databus.canal.CanalClient;
-import com.jdddata.middleware.databus.canal.context.CanalContext;
 import com.jdddata.middleware.databus.common.CanalStatus;
-import com.jdddata.middleware.databus.common.PropertiesUtil;
+import com.jdddata.middleware.databus.common.PropertiesHelper;
 import com.jdddata.middleware.databus.exception.ValidatorException;
 import org.I0Itec.zkclient.ZkClient;
 import org.I0Itec.zkclient.exception.ZkTimeoutException;
@@ -11,57 +10,37 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.ClassUtils;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.concurrent.ConcurrentHashMap;
 
 
 @Controller
 public class ManagerController {
 
-    @RequestMapping(value = "canal/start/{contextName}", method = RequestMethod.POST)
+    @RequestMapping(value = "canal/start", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<Map<String, Object>> startCanal(@PathVariable("contextName") String contextName) {
+    public ResponseEntity<Map<String, Object>> startCanal() {
 
-        String fileName = contextName + ".properties";
         try {
-            File configs = new File(ClassUtils.getDefaultClassLoader().getResource("config").getPath());
-            final ConcurrentHashMap<String, File> fileName_File_map = new ConcurrentHashMap<>();
-            for (File file : configs.listFiles()) {
-                fileName_File_map.put(file.getName(), file);
-            }
-            if (fileName_File_map.containsKey(fileName)) {
-                File file = fileName_File_map.get(fileName);
-                Properties properties = PropertiesUtil.loadProperties(file);
+            Properties properties = PropertiesHelper.read();
 
-                checkOutBeforStarting(contextName, properties);
+            checkOutBeforStarting(properties);
 
-                CanalClient.INSTANCE.start(CanalContext.covert(properties));
-                properties.replace("status", CanalStatus.RUNNING.getValue());
-                FileOutputStream fileOutputStream = new FileOutputStream(file);
-                properties.store(fileOutputStream, null);
-                fileOutputStream.close();
+            CanalClient.INSTANCE.start();
+            PropertiesHelper.updateStatus(CanalStatus.RUNNING.getValue());
 
-                Map<String, Object> map = new HashMap<>();
-                map.put("errMsg", "");
-                return new ResponseEntity<>(map, HttpStatus.OK);
-
-            }
             Map<String, Object> map = new HashMap<>();
-            map.put("errMsg", contextName + ": config file is not exist");
-            return new ResponseEntity<>(map, HttpStatus.INTERNAL_SERVER_ERROR);
-        } catch (IOException | ValidatorException e) {
+            map.put("errMsg", "");
+
+            return new ResponseEntity<>(map, HttpStatus.OK);
+
+        } catch (ValidatorException e) {
             Map<String, Object> map = new HashMap<>();
             map.put("errMsg", e.getMessage());
             return new ResponseEntity<>(map, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -70,24 +49,18 @@ public class ManagerController {
 
     }
 
-    @RequestMapping(value = "canal/stop/{contextName}", method = RequestMethod.POST)
+    @RequestMapping(value = "canal/stop", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<Map<String, Object>> stopCanal(@PathVariable("contextName") String contextName) {
-        String fileName = contextName + ".properties";
-        File configs = new File(ClassUtils.getDefaultClassLoader().getResource("config").getPath());
-        final ConcurrentHashMap<String, File> fileName_File_map = new ConcurrentHashMap<>();
-        for (File file : configs.listFiles()) {
-            fileName_File_map.put(file.getName(), file);
-        }
+    public ResponseEntity<Map<String, Object>> stopCanal() {
 
-        CanalClient.INSTANCE.stop(contextName);
+        CanalClient.INSTANCE.stop();
         Map<String, Object> map = new HashMap<>();
         map.put("errMsg", "");
         return new ResponseEntity<>(map, HttpStatus.OK);
 
     }
 
-    private void checkOutBeforStarting(String fileNameWithoutPrefix, Properties properties) throws ValidatorException {
+    private void checkOutBeforStarting(Properties properties) throws ValidatorException {
         /**
          * 当前该destination的连接状态
          */
@@ -99,16 +72,6 @@ public class ManagerController {
             throw new ValidatorException("your application is running");
         }
 
-        /**
-         * 当前该destination的文件名字或者叫别名
-         */
-        String contextname = (String) properties.get("contextname");
-        if (!fileNameWithoutPrefix.equalsIgnoreCase(contextname)) {
-            throw new ValidatorException("the config content is not belong to " + fileNameWithoutPrefix + ".properties");
-        }
-        if (StringUtils.isBlank(contextname)) {
-            throw new ValidatorException("there is no contextname in properties,please config it again");
-        }
         /**
          * destination
          */

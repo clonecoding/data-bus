@@ -1,15 +1,22 @@
 package com.jdddata.middleware.databus.canal;
 
-import com.google.common.collect.Maps;
+import com.alibaba.otter.canal.client.CanalConnector;
+import com.alibaba.otter.canal.client.CanalConnectors;
+import com.alibaba.otter.canal.protocol.Message;
+import com.jdddata.middleware.databus.canal.api.ICanalBuildMsg;
+import com.jdddata.middleware.databus.canal.api.ICanalMqService;
 import com.jdddata.middleware.databus.canal.api.Startable;
 import com.jdddata.middleware.databus.canal.context.CanalContext;
-import com.jdddata.middleware.databus.common.CanalStatus;
+import com.jdddata.middleware.databus.canal.entity.CanalRocketMsg;
+import com.jdddata.middleware.databus.canal.factory.CanalMQFactory;
+import com.jdddata.middleware.databus.canal.factory.CanalMsgBuildFactory;
 import com.jdddata.middleware.databus.common.PropertiesHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Properties;
 
 /**
  * canal 启动类，负责初始化rocketmq，新开启一个destination线程 并进行destination线程管理
@@ -20,60 +27,113 @@ public enum CanalClient implements Startable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CanalClient.class);
 
-    private static final Map<String, TaskReferrer> STRING_DESTINATION_TASK_MAP = Maps.newConcurrentMap();
+    private Thread.UncaughtExceptionHandler handler = null;
 
-    private static final HashMap<String, String> statusMap = Maps.newHashMap();
+    private volatile boolean running = false;
+
+    private Thread thread;
+
+    private CanalConnector connector;
+
+    private String destination;
+
+    private ICanalBuildMsg iCanalBuildMsg;
+
+    private ICanalMqService iCanalMqService;
+
+    private CanalContext context;
 
 
     CanalClient() {
-
-    }
-
-    @Override
-    public void start(CanalContext context) {
-
-        LOGGER.debug("destination {} is start");
-
-
-        DestinationTask task = new DestinationTask(context);
-        Thread thread = new Thread(task);
-        thread.start();
-        STRING_DESTINATION_TASK_MAP.put(context.getDestination(), new TaskReferrer(thread, task));
-
-    }
-
-    public Map getAllDestionStatus() {
-        synchronized (statusMap) {
-            statusMap.clear();
-            for (Map.Entry<String, TaskReferrer> entry : STRING_DESTINATION_TASK_MAP.entrySet()) {
-                boolean alive = entry.getValue().getThread().isAlive();
-                if (!alive) {
-                    STRING_DESTINATION_TASK_MAP.remove(entry.getKey());
-                }
-                statusMap.put(entry.getKey(), String.valueOf(alive));
-            }
-            return statusMap;
+        try {
+            Properties properties = PropertiesHelper.read();
+            CanalContext context = CanalContext.covert(properties);
+            this.context = context;
+            this.iCanalBuildMsg = CanalMsgBuildFactory.createInstance(context);
+            this.iCanalMqService = CanalMQFactory.createInstance(context);
+            this.destination = context.getDestination();
+        } catch (InvocationTargetException e) {
+            return;
+        } catch (NoSuchMethodException e) {
+            return;
+        } catch (InstantiationException e) {
+            return;
+        } catch (IllegalAccessException e) {
+            return;
         }
     }
 
     @Override
-    public void stop(String destination) {
+    public void start() {
+        handler = (t, e) -> LOGGER.error("parse events has an error", e);
 
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            public void run() {
-                TaskReferrer taskReferrer = STRING_DESTINATION_TASK_MAP.get(destination);
-                if (!taskReferrer.getTask().isRunning()) {
-                    return;
-                }
-                taskReferrer.getTask().setRunning(false);
-                try {
-                    PropertiesHelper.updateStatus(CanalStatus.STOPPING.getValue());
-                    taskReferrer.getThread().join();
-                } catch (InterruptedException e) {
-                    //ignore
-                }
-                STRING_DESTINATION_TASK_MAP.remove(destination);
-            }
+        LOGGER.debug("destination {} is start");
+        connector = CanalConnectors.newClusterConnector(context.getZkAddress(), context.getDestination(), "", "");
+
+        thread = new Thread(() -> {
+            process();
         });
+
+        thread.setUncaughtExceptionHandler(handler);
+        thread.start();
+        running = true;
     }
+
+    private void process() {
+        int batchSize = 1;
+        while (running) {
+            try {
+                MDC.put("destination", destination);
+                connector.connect();
+                connector.subscribe();
+                while (running) {
+                    Message message = connector.getWithoutAck(batchSize); // 获取指定数量的数据
+                    long batchId = message.getId();
+                    int size = message.getEntries().size();
+                    if (batchId == -1 || size == 0) {
+                        connector.ack(message.getId());
+                    } else {
+
+                        CanalRocketMsg canalRocketMsg = iCanalBuildMsg.buildMsg(message);
+
+                        boolean success = iCanalMqService.sendOrderly(canalRocketMsg);
+                        if (success) {
+                            // 提交确认
+                            connector.ack(message.getId());
+                        } else {
+                            // 处理失败, 回滚数据
+                            connector.rollback(message.getId());
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                LOGGER.error("process error!", e);
+            } finally {
+                connector.disconnect();
+                MDC.remove("destination");
+            }
+        }
+    }
+
+
+    @Override
+    public void stop() {
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+
+            if (!running) {
+                return;
+            }
+            running = false;
+            if (null != thread || thread.isAlive()) {
+                try {
+                    thread.join();
+                } catch (InterruptedException e) {
+                    // ignore
+                }
+            }
+        }));
+
+    }
+
 }
