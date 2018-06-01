@@ -10,6 +10,7 @@ import com.jdddata.middleware.databus.canal.context.CanalContext;
 import com.jdddata.middleware.databus.canal.entity.CanalRocketMsg;
 import com.jdddata.middleware.databus.canal.factory.CanalMQFactory;
 import com.jdddata.middleware.databus.canal.factory.CanalMsgBuildFactory;
+import com.jdddata.middleware.databus.common.CanalStatus;
 import com.jdddata.middleware.databus.common.PropertiesHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,21 +46,23 @@ public enum CanalClient implements Startable {
 
 
     CanalClient() {
-        try {
-            Properties properties = PropertiesHelper.read();
-            CanalContext context = CanalContext.covert(properties);
-            this.context = context;
-            this.iCanalBuildMsg = CanalMsgBuildFactory.createInstance(context);
-            this.iCanalMqService = CanalMQFactory.createInstance(context);
-            this.destination = context.getDestination();
-        } catch (InvocationTargetException e) {
-            return;
-        } catch (NoSuchMethodException e) {
-            return;
-        } catch (InstantiationException e) {
-            return;
-        } catch (IllegalAccessException e) {
-            return;
+        if (null == context) {
+            try {
+                Properties properties = PropertiesHelper.read();
+                CanalContext context = CanalContext.covert(properties);
+                this.context = context;
+                this.iCanalBuildMsg = CanalMsgBuildFactory.createInstance(context);
+                this.iCanalMqService = CanalMQFactory.createInstance(context);
+                this.destination = context.getDestination();
+            } catch (InvocationTargetException e) {
+                return;
+            } catch (NoSuchMethodException e) {
+                return;
+            } catch (InstantiationException e) {
+                return;
+            } catch (IllegalAccessException e) {
+                return;
+            }
         }
     }
 
@@ -134,6 +137,14 @@ public enum CanalClient implements Startable {
             }
         }));
 
+    }
+
+    public void updateStatus() {
+        if (null != thread && this.thread.isAlive()) {
+            PropertiesHelper.updateStatus(CanalStatus.RUNNING.getValue());
+        } else {
+            PropertiesHelper.updateStatus(CanalStatus.STOPPING.getValue());
+        }
     }
 
 }

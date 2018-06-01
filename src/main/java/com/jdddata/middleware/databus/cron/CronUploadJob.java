@@ -1,6 +1,7 @@
 package com.jdddata.middleware.databus.cron;
 
 import com.alibaba.fastjson.JSONArray;
+import com.jdddata.middleware.databus.canal.CanalClient;
 import com.jdddata.middleware.databus.canal.context.CanalContext;
 import com.jdddata.middleware.databus.common.PropertiesHelper;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -29,6 +30,7 @@ public class CronUploadJob implements Job {
                 .setConnectionManager(cm)
                 .build();
         HttpPost httpPost = new HttpPost(host);
+        CanalClient.INSTANCE.updateStatus();
         String body = JSONArray.toJSONString(CanalContext.covert(PropertiesHelper.read()));
         try {
             StringEntity stringEntity = new StringEntity(body);
